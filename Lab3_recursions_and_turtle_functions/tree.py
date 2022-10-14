@@ -1,29 +1,43 @@
 import turtle
+import random
 t = turtle.Turtle()
 t.speed('fastest')
 window = turtle.Screen()
-def draw_tree(branch_length, levels):
-    if levels > 0:
-        t.pencolor('blue')
-        t.fd(branch_length)
-        t.rt(20)
-        # first outer branch
-        print(f'section 1: levels--{levels}, length--{branch_length}')
+window.colormode(255)
 
-        t.pencolor('green')
-        draw_tree(branch_length * 3/4, levels - 1)
-        # reorienting for next branch
-        t.lt(20)
-        t.bk(branch_length)
-        print(f'section 2: levels--{levels}, length--{branch_length}')
+def draw_tree(branch_length, levels, angle):
+    if levels < 0:                                          # drawing random color for leaves
+        t.pencolor([random.randint(190, 255),
+            random.randint(80, 200), 9])
+        for i in range(4):
+            t.rt(90)
+            t.fd(7.5)
+            t.dot(7.5)
 
-        # t.pencolor('red')
-        # draw_tree(branch_length * 3/4, levels - 1)
-        # print(f'section 3: levels--{levels}, length--{branch_length}')
+        t.pencolor((92, 64, 51))                            # change colour back to brown
+        return levels
     else:
-        t.dot(10, 'green')
+        t.pencolor((92, 64, 51))                            # change colour to brown
+        t.width(levels * 2)
+
+        t.fd(branch_length)                                 # drawing left branch
+        t.lt(angle)
+        draw_tree(branch_length * 3/4, levels - 1, angle)
+
+        t.width(levels * 2)                                 # draws right branch
+        t.rt(angle * 2)
+        draw_tree(branch_length * 3/4, levels - 1, angle)
+
+        t.lt(angle)                                         # orienting and then going backwards
+        t.penup()
+        t.bk(branch_length)
+        t.pendown()
 
 
-t.lt(90)
-draw_tree(80, 4)
+
+t.lt(90)                                                    # moves so pointing up and lower on screen
+t.penup()
+t.bk(200)
+t.pendown()
+draw_tree(80, 5, 30)
 window.exitonclick()
