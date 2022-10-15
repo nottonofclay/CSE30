@@ -1,7 +1,7 @@
 import turtle
 import random
 t = turtle.Turtle()
-t.speed('fastest')
+t.speed(100000)
 window = turtle.Screen()
 window.colormode(255)
 
@@ -11,8 +11,8 @@ def draw_tree(branch_length, levels, angle):
             random.randint(80, 200), 9])
         for i in range(4):
             t.rt(90)
-            t.fd(7.5)
-            t.dot(7.5)
+            t.fd(branch_length * 1.3)
+            t.dot(branch_length * 1.3)
 
         t.pencolor((92, 64, 51))                            # change colour back to brown
         return levels
@@ -39,5 +39,5 @@ t.lt(90)                                                    # moves so pointing 
 t.penup()
 t.bk(200)
 t.pendown()
-draw_tree(80, 5, 30)
+draw_tree(150, 5, 20)
 window.exitonclick()
