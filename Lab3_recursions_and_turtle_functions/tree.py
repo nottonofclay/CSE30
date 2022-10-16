@@ -1,7 +1,7 @@
 import turtle
 import random
 t = turtle.Turtle()
-t.speed(100000)
+t._tracer(100)
 window = turtle.Screen()
 window.colormode(255)
 
@@ -39,5 +39,5 @@ t.lt(90)                                                    # moves so pointing 
 t.penup()
 t.bk(200)
 t.pendown()
-draw_tree(150, 5, 20)
+draw_tree(100, 10, 20)
 window.exitonclick()
