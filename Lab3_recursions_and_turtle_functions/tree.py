@@ -1,7 +1,7 @@
 import turtle
 import random
 t = turtle.Turtle()
-t._tracer(100)
+t._tracer(50)
 window = turtle.Screen()
 window.colormode(255)
 
