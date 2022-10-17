@@ -3,8 +3,8 @@ import random
 t = turtle.Turtle()
 window = turtle.Screen()
 window.colormode(255)
-t.speed('fastest')
-# t._tracer(0)
+# t.speed('fastest')
+t._tracer(20)
 
 def draw_dragon(length, step, angle=45):
     if step <= 0:
@@ -20,5 +20,5 @@ def draw_dragon(length, step, angle=45):
 
 
 window.bgcolor('grey')
-draw_dragon(10, 50)
+draw_dragon(5, 20)
 window.exitonclick()
