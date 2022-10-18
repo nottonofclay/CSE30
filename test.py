@@ -4,5 +4,6 @@ def print_numbers(n):
         print(n)
     else:
       print(n)
+      print(n)
 # main program
 print_numbers(10)
