@@ -55,6 +55,7 @@ class Board:
                   self.winner = self.board[3]
                   return True
             elif (' ' not in self.board):
+                  self.winner = ''
                   return True
             return done
       def show(self):

@@ -55,30 +55,33 @@ class MiniMax(Player):
                         return 'X'
       def minimax(self, board, self_player, start):
             # check the base conditions
-            min = float('inf')
-            max = float('-inf')
             score = 0
             valid_choices = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
             if board.isdone():
-                  board.show()
-                  print(f'score: {score}')
                   # self is a winner
                   if board.get_winner() == 'X':
                         return 1
-                  # is a tie
-                  elif board.get_winner() == 'O':
-                        return 0
                   # self is a looser (opponent is a winner)
-                  else:
+                  elif board.get_winner() == 'O':
                         return -1
+                  # is a tie
+                  else:
+                        return 0
             else:
+                  min = float('inf')
+                  max = float('-inf')
                   for i in range(board.get_size()):
                         if (board.isempty(valid_choices[i])):
-                              board.show()
                               board.set(valid_choices[i], self.determine_sign(self_player))
+                              score = MiniMax.minimax(self, board, not self_player, False)
+                              board.show()
                               print(f'score: {score}')
-                              score += MiniMax.minimax(self, board, not self_player, False)
+                              # if (self_player) and score > max:
+                              #       max = score
+                              # elif (not self_player) and score < min:
+                              #       min = score
                               board.set(valid_choices[i], ' ')
+
 
 
 
