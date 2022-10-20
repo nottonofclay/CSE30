@@ -1,5 +1,3 @@
-from asyncio import SelectorEventLoop
-from pyclbr import Class
 from random import choice
 
 class Player:
@@ -70,27 +68,24 @@ class MiniMax(Player):
             else:
                   min = float('inf')
                   max = float('-inf')
+                  score = 0
                   for i in range(board.get_size()):
                         if (board.isempty(valid_choices[i])):
                               board.set(valid_choices[i], self.determine_sign(self_player))
                               score = MiniMax.minimax(self, board, not self_player, False)
-                              board.show()
-                              print(f'score: {score}')
-                              # if (self_player) and score > max:
-                              #       max = score
-                              # elif (not self_player) and score < min:
-                              #       min = score
                               board.set(valid_choices[i], ' ')
+                              if (self_player) and score > max:
+                                    max = score
+                                    choice = valid_choices[i]
+                              elif (not self_player) and score < min:
+                                    min = score
+                  if start:
+                        return choice
+                  elif self_player:
+                        return max
+                  else:
+                        return min
 
-
-
-
-
-
-
-
-                  # make a move (choose a cell) recursively
-                  # use the pseudocode given to you above to implement the missing code
 
 
 # class SmartAI(Player):
