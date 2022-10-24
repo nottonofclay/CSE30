@@ -1,5 +1,7 @@
-import random
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
 
-board = [' ', ' ', ' ', ' ']
 
-print(board.index(random.choice(board)))
+arr_to2D = arr.reshape(5,1)
+print(arr_to2D)
+print(arr_to2D.reshape(-1))
