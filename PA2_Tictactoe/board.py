@@ -28,16 +28,15 @@ class Board:
                   return False
       def isdone(self):
             done = False
-            # top horizontal, left vertical, left to right diagonal
             if (self.board[0] != ' ') and (self.board[0] == self.board[3] == self.board[6]):          # top horizontal
-                        self.winner = self.board[0]
-                        return True
+                  self.winner = self.board[0]
+                  return True
             elif (self.board[0] != ' ') and (self.board[0] == self.board[1] == self.board[2]):        # left vertical
-                        self.winner = self.board[0]
-                        return True
+                  self.winner = self.board[0]
+                  return True
             elif (self.board[0] != ' ') and (self.board[0] == self.board[4] == self.board[8]):        # left/right diag
-                        self.winner = self.board[0]
-                        return True
+                  self.winner = self.board[0]
+                  return True
             elif (self.board[6] != ' ') and (self.board[6] == self.board[7] == self.board[8]):        # right vertical
                   self.winner = self.board[6]
                   return True
@@ -45,9 +44,8 @@ class Board:
                   self.winner = self.board[6]
                   return True
             elif (self.board[1] != ' ') and (self.board[1] == self.board[4] == self.board[7]):        # middle horizontal
-                  if(self.board[1] == self.board[4] == self.board[7]):
-                        self.winner = self.board[1]
-                        return True
+                  self.winner = self.board[1]
+                  return True
             elif (self.board[2] != ' ') and (self.board[2] == self.board[5] == self.board[8]):        # bottom horizontal
                   self.winner = self.board[2]
                   return True
@@ -55,6 +53,7 @@ class Board:
                   self.winner = self.board[3]
                   return True
             elif (' ' not in self.board):
+                  self.winner = ''
                   return True
             return done
       def show(self):
