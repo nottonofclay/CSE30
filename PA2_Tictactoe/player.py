@@ -53,6 +53,7 @@ class MiniMax(Player):
             valid_choices = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
             if board.isdone():
                   # self is a winner
+                  board.show()
                   if board.get_winner() == 'X':
                         return 1
                   # self is a looser (opponent is a winner)
@@ -68,6 +69,7 @@ class MiniMax(Player):
                   for i in range(board.get_size()):
                         if (board.isempty(valid_choices[i])):
                               board.set(valid_choices[i], self.determine_sign(self_player))
+                              board.show()
                               score = MiniMax.minimax(self, board, not self_player, False)
                               board.set(valid_choices[i], ' ')
                               if (self_player) and score > max:

@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 fig = plt.figure()
-points = [3,3,3]
-data = np.ones(points)
-ax = fig.add_subplot(111, projection='3d')
-ax.voxels(data)
+ax = plt.axes(projection='3d')
+x = [0, 0.5,1, 1, 0.5, 0, 1, 0, 0, 1]
+y = [0, 0.5,0, 1, 0.5, 1, 1, 1, 0, 0]
+z = [0, 1,  0, 0, 1,   0, 0, 0, 0, 0]
+
+ax.plot3D(x,y,z)
 plt.show()
