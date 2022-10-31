@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 from mpl_toolkits import mplot3d
+from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
 
 fig = plt.figure()
 
@@ -91,11 +93,36 @@ ax.set_title('Square Pyramid')
 
 # parallelepiped
 ax = fig.add_subplot(3, 3, 9, projection='3d')
-x = np.linspace(0, 1, 100)
-y = np.linspace(0, 1, 100)
-X, Y = np.meshgrid(x, y)
-Z = X * Y
-ax.plot_surface(X, Y, Z, cmap='plasma')
-ax.set_title('Parallelepiped')
+points = np.array([[-1, -1, -1],
+                  [1, -1, -1 ],
+                  [1, 1, -1],
+                  [-1, 1, -1],
+                  [-1, -1, 1],
+                  [1, -1, 1 ],
+                  [1, 1, 1],
+                  [-1, 1, 1]])
+
+P = [[2.06498904e-01 , -6.30755443e-07 ,  1.07477548e-03],
+     [1.61535574e-06 ,  1.18897198e-01 ,  7.85307721e-06],
+     [7.08353661e-02 ,  4.48415767e-06 ,  2.05395893e-01]]
+
+Z = np.zeros((8,3))
+for i in range(8): Z[i,:] = np.dot(points[i,:],P)
+Z = 10.0*Z
+X, Y = np.meshgrid(r, r)
+# plot vertices
+ax.scatter3D(Z[:, 0], Z[:, 1], Z[:, 2])
+
+# list of sides' polygons of figure
+verts = [[Z[0],Z[1],Z[2],Z[3]],
+ [Z[4],Z[5],Z[6],Z[7]],
+ [Z[0],Z[1],Z[5],Z[4]],
+ [Z[2],Z[3],Z[7],Z[6]],
+ [Z[1],Z[2],Z[6],Z[5]],
+ [Z[4],Z[7],Z[3],Z[0]]]
+
+# plot sides
+ax.add_collection3d(Poly3DCollection(verts, facecolors='purple'))
+
 
 plt.show()
