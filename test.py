@@ -10,9 +10,13 @@ output = output.join([format(ord(i), "08b") for i in text])
 
 # print(format(ord('A') + 3))
 
-byte = format(ord('z'), "08b")
+print(ord(None))
+
+byte = format(ord('a'), "08b")
 
 print(byte)
 
-print(chr(int(byte,2)))
+print(chr((int(byte,2) - 2)%256))
+
+print(-2 % 256)
 
