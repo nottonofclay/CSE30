@@ -1,22 +1,7 @@
-import numpy as np
+import os
+import cv2
+os.chdir('C:/Users/tonof/OneDrive/Documents/Code/CSE30/PA3_Cryptography')
 
+image = cv2.imread('redbox.jpg')
 
-
-output = ''
-text = 'hello'
-output = output.join([format(ord(i), "08b") for i in text])
-# print(output)
-
-
-# print(format(ord('A') + 3))
-
-print(ord(None))
-
-byte = format(ord('a'), "08b")
-
-print(byte)
-
-print(chr((int(byte,2) - 2)%256))
-
-print(-2 % 256)
-
+print(image)

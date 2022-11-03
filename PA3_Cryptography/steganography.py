@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from math import ceil
 from codec import Codec, CaesarCypher, HuffmanCodes
+import os
+os.chdir('C:/Users/tonof/OneDrive/Documents/Code/CSE30/PA3_Cryptography')
 
 
 class Steganography():
@@ -14,6 +16,9 @@ class Steganography():
         self.binary = ''
         self.delimiter = '#'
         self.codec = None
+
+    # def sig_bit():
+
 
     def encode(self, filein, fileout, message, codec):
         image = cv2.imread(filein)
@@ -25,7 +30,7 @@ class Steganography():
 
         # convert into binary
         if codec == 'binary':
-            self.codec = Codec(delimiter = self.delimiter)
+            self.codec = Codec()
         elif codec == 'caesar':
             self.codec = CaesarCypher(delimiter = self.delimiter)
         elif codec == 'huffman':
@@ -77,4 +82,5 @@ class Steganography():
         plt.show()
 
 message = Steganography()
+message.encode(filein='redbox.jpg', fileout='redbox_encoded.jpg', message='hello', codec='binary')
 print()
