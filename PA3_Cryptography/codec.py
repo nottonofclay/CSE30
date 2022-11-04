@@ -140,21 +140,26 @@ if __name__ == '__main__':
 
     print('Codec')
     c = Codec()
-    binary = c.encode(text + c.delimiter)
-    print('Binary:',binary)
-    data = c.decode(binary)
-    print('Text:',data + '\n')
+    print(c.decode('011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011'))
 
-    print('CaesarCypher')
-    cc = CaesarCypher()
-    binary = cc.encode(text + cc.delimiter)
-    print('Binary:',binary)
-    data = cc.decode(binary)
-    print('Text:',data + '\n')
 
-    print('HuffmanCodes')
-    h = HuffmanCodes()
-    binary = h.encode(text + h.delimiter)
-    print('Binary:',binary)
-    data = h.decode(binary)
-    print('Text:',data)
+    # binary = c.encode(text + c.delimiter)
+    # print('Binary:',binary)
+    # data = c.decode(binary)
+    # print('Text:',data + '\n')
+
+    # print('CaesarCypher')
+    # cc = CaesarCypher()
+    # binary = cc.encode(text + cc.delimiter)
+    # print('Binary:',binary)
+    # data = cc.decode(binary)
+    # print('Text:',data + '\n')
+
+    # print('HuffmanCodes')
+    # h = HuffmanCodes()
+    # binary = h.encode(text + h.delimiter)
+    # print('Binary:',binary)
+    # data = h.decode(binary)
+    # print('Text:',data)
+
+

@@ -22,7 +22,6 @@ class Steganography():
 
     def encode(self, filein, fileout, message, codec):
         image = cv2.imread(filein)
-        print(image) # for debugging
 
         # calculate available bytes
         max_bytes = image.shape[0] * image.shape[1] * 3 // 8
@@ -32,9 +31,9 @@ class Steganography():
         if codec == 'binary':
             self.codec = Codec()
         elif codec == 'caesar':
-            self.codec = CaesarCypher(delimiter = self.delimiter)
+            self.codec = CaesarCypher()
         elif codec == 'huffman':
-            self.codec = HuffmanCodes(delimiter = self.delimiter)
+            self.codec = HuffmanCodes()
         binary = self.codec.encode(message + self.delimiter)
 
         # check if possible to encode the message
@@ -45,30 +44,41 @@ class Steganography():
             print("Bytes to encode:", num_bytes)
             self.text = message
             self.binary = binary
-            # your code goes here
-            # you may create an additional method that modifies the image array
+            count = 0
+            for pos, i in np.ndenumerate(image):
+                value = image[pos[0]][pos[1]][pos[2]]
+                if (self.binary[count] == '0') and (value % 2 != 0):
+                    if (value == 255):
+                        image[pos[0]][pos[1]][pos[2]] -= 1
+                    else:
+                        image[pos[0]][pos[1]][pos[2]] += 1
+                elif (self.binary[count] == '1') and (value % 2 == 0):
+                    image[pos[0]][pos[1]][pos[2]] += 1
+                count += 1
+                if (count >= len(binary)):
+                    break
             cv2.imwrite(fileout, image)
 
-    # def decode(self, filein, codec):
-    #     image = cv2.imread(filein)
-    #     print(image) # for debugging
+    def decode(self, filein, codec):
+        image = cv2.imread(filein)
+        flag = True
 
-    #     # convert into text
-    #     if codec == 'binary':
-    #         self.codec = Codec(delimiter = self.delimiter)
-    #     elif codec == 'caesar':
-    #         self.codec = CaesarCypher(delimiter = self.delimiter)
-    #     elif codec == 'huffman':
-    #         if self.codec == None or self.codec.name != 'huffman':
-    #             print("A Huffman tree is not set!")
-    #             flag = False
-    #     if flag:
-    #         # your code goes here
-    #         # you may create an additional method that extract bits from the image array
-    #         binary_data = ?
-    #         # update the data attributes:
-    #         self.text = self.codec.decode(binary_data)
-    #         self.binary = ?
+        # convert into text
+        if codec == 'binary':
+            self.codec = Codec()
+        elif codec == 'caesar':
+            self.codec = CaesarCypher()
+        elif codec == 'huffman':
+            if self.codec == None or self.codec.name != 'huffman':
+                print("A Huffman tree is not set!")
+                flag = False
+        if flag:
+            binary_data = ''
+            for i in np.nditer(image):
+                binary_data += str(i % 2)
+            print(binary_data)
+            self.text = self.codec.decode(binary_data)
+        print(self.text)
 
     def print(self):
         if self.text == '':
@@ -83,4 +93,4 @@ class Steganography():
 
 message = Steganography()
 message.encode(filein='redbox.jpg', fileout='redbox_encoded.jpg', message='hello', codec='binary')
-print()
+message.decode(filein = 'redbox_encoded.jpg', codec = 'binary')
