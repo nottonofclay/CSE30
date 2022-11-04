@@ -54,7 +54,10 @@ class CaesarCypher(Codec):
             binary.append(byte)
         text = ''
         for byte in binary:
-            text += chr(int(byte,2) - self.shift)
+            try:
+                text += chr(int(byte,2) - self.shift)
+            except:
+                text += chr(255 + int(byte,2) - self.shift)
         return text
 
 # a helper class used for class HuffmanCodes that implements a Huffman tree
@@ -132,34 +135,10 @@ class HuffmanCodes(Codec):
         # you need to traverse the tree
         return text
 
-# driver program for codec classes
 if __name__ == '__main__':
     text = 'hello'
-    #text = 'Casino Royale 10:30 Order martini'
-    print('Original:', text + '\n')
-
-    print('Codec')
-    c = Codec()
-    print(c.decode('011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011011'))
-
-
-    # binary = c.encode(text + c.delimiter)
-    # print('Binary:',binary)
-    # data = c.decode(binary)
-    # print('Text:',data + '\n')
-
-    # print('CaesarCypher')
-    # cc = CaesarCypher()
-    # binary = cc.encode(text + cc.delimiter)
-    # print('Binary:',binary)
-    # data = cc.decode(binary)
-    # print('Text:',data + '\n')
-
-    # print('HuffmanCodes')
-    # h = HuffmanCodes()
-    # binary = h.encode(text + h.delimiter)
-    # print('Binary:',binary)
-    # data = h.decode(binary)
-    # print('Text:',data)
-
-
+    cc = CaesarCypher(shift=30)
+    binary = cc.encode(text + cc.delimiter)
+    print('Binary:', binary)
+    data = cc.decode(binary)
+    print('Text:', data)

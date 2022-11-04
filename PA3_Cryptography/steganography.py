@@ -31,7 +31,14 @@ class Steganography():
         if codec == 'binary':
             self.codec = Codec()
         elif codec == 'caesar':
-            self.codec = CaesarCypher()
+            while True:
+                shift = input('Please enter a shift size: ')
+                try:
+                    shift = int(shift)
+                    break
+                except:
+                    print('Please enter an integer!')
+            self.codec = CaesarCypher(shift=shift)
         elif codec == 'huffman':
             self.codec = HuffmanCodes()
         binary = self.codec.encode(message + self.delimiter)
@@ -67,7 +74,14 @@ class Steganography():
         if codec == 'binary':
             self.codec = Codec()
         elif codec == 'caesar':
-            self.codec = CaesarCypher()
+            while True:
+                shift = input('Please enter a shift size: ')
+                try:
+                    shift = int(shift)
+                    break
+                except:
+                    print('Please enter an integer!')
+            self.codec = CaesarCypher(shift=shift)
         elif codec == 'huffman':
             if self.codec == None or self.codec.name != 'huffman':
                 print("A Huffman tree is not set!")
@@ -76,7 +90,6 @@ class Steganography():
             binary_data = ''
             for i in np.nditer(image):
                 binary_data += str(i % 2)
-            print(binary_data)
             self.text = self.codec.decode(binary_data)
         print(self.text)
 
@@ -90,7 +103,3 @@ class Steganography():
     def show(self, filename):
         plt.imshow(mpimg.imread(filename))
         plt.show()
-
-message = Steganography()
-message.encode(filein='redbox.jpg', fileout='redbox_encoded.jpg', message='hello', codec='binary')
-message.decode(filein = 'redbox_encoded.jpg', codec = 'binary')
