@@ -6,7 +6,6 @@ import matplotlib.image as mpimg
 from math import ceil
 from codec import Codec, CaesarCypher, HuffmanCodes
 import os
-os.chdir('C:/Users/tonof/OneDrive/Documents/Code/CSE30/PA3_Cryptography')
 
 
 class Steganography():
@@ -16,9 +15,6 @@ class Steganography():
         self.binary = ''
         self.delimiter = '#'
         self.codec = None
-
-    # def sig_bit():
-
 
     def encode(self, filein, fileout, message, codec):
         image = cv2.imread(filein)
@@ -83,9 +79,7 @@ class Steganography():
                     print('Please enter an integer!')
             self.codec = CaesarCypher(shift=shift)
         elif codec == 'huffman':
-            if self.codec == None or self.codec.name != 'huffman':
-                print("A Huffman tree is not set!")
-                flag = False
+            self.codec = HuffmanCodes()
         if flag:
             binary_data = ''
             for i in np.nditer(image):
