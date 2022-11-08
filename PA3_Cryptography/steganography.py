@@ -79,7 +79,9 @@ class Steganography():
                     print('Please enter an integer!')
             self.codec = CaesarCypher(shift=shift)
         elif codec == 'huffman':
-            self.codec = HuffmanCodes()
+            if self.codec == None or self.codec.name != 'huffman':
+                print("A Huffman tree is not set!")
+                flag = False
         if flag:
             binary_data = ''
             for i in np.nditer(image):

@@ -106,7 +106,7 @@ class HuffmanCodes(Codec):
             nodes.remove(left)
             nodes.remove(right)
             nodes.append(root)
-
+        self.nodes = nodes[0]
         return nodes[0]
 
     def make_key(self, node, val):
@@ -120,21 +120,30 @@ class HuffmanCodes(Codec):
 
     # traverse a Huffman tree
     def traverse_tree(self, node, val):
-        if(val[0] == '0'):
-            print('left')
-            try:
-                self.traverse_tree(node.left, val[1:])
-            except:
-                print(node.symbol)
-        if(val[0] == '1'):
-            print('right')
-            self.traverse_tree(node.right, val[1:])
-        else:
-            print(node.symbol)
-            # self.traverse_tree(node, next_val)
-            # this is for debugging
-            # you need to update this part of the code
-            # or rearrange it so it suits your need
+        current_node = node
+        output = ''
+        for i in val:
+            if (val[0] == '0'):
+                try:
+                    current_node.right.symbol
+                    current_node = current_node.left
+                    val = val[1:]
+                except:
+                    if (current_node.symbol == '#'):
+                        break
+                    output += current_node.symbol
+                    current_node = node
+            if (val[0] == '1'):
+                try:
+                    current_node.left.symbol
+                    current_node = current_node.right
+                    val = val[1:]
+                except:
+                    if (current_node.symbol == '#'):
+                        break
+                    output += current_node.symbol
+                    current_node = node
+        return output
 
     # convert text into binary form
     def encode(self, text):
@@ -153,24 +162,21 @@ class HuffmanCodes(Codec):
 
     # convert binary data into text
     def decode(self, data):
-        output = ''
-        key = ''
-        for i in range(len(data)):
-            key += data[i]
-            if (key in list(self.data.values())):
-                word = [i for i in self.data.keys() if self.data[i] == key]
-                if (word[0] == '#'):
-                    return output
-                output += word[0]
-                key = ''
-        return output
-
-    # def decode(self, data):
-    #     output = ''
+        # output = ''
+        # key = ''
+        # for i in range(len(data)):
+        #     key += data[i]
+        #     if (key in list(self.data.values())):
+        #         word = [i for i in self.data.keys() if self.data[i] == key]
+        #         if (word[0] == '#'):
+        #             return output
+        #         output += word[0]
+        #         key = ''
+        return self.traverse_tree(self.nodes, data)
 
 
 if __name__ == '__main__':
-    text = 'helllo'
+    text = 'helllo my name is raj'
     cc = HuffmanCodes()
     binary = cc.encode(text + cc.delimiter)
     print('Binary:', binary)
