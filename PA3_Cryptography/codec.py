@@ -120,13 +120,18 @@ class HuffmanCodes(Codec):
 
     # traverse a Huffman tree
     def traverse_tree(self, node, val):
-        next_val = val + node.code
-        if(node.left):
-            self.traverse_tree(node.left, next_val)
-        if(node.right):
-            self.traverse_tree(node.right, next_val)
-        if(not node.left and not node.right):
-            return(node.symbol)
+        if(val[0] == '0'):
+            print('left')
+            try:
+                self.traverse_tree(node.left, val[1:])
+            except:
+                print(node.symbol)
+        if(val[0] == '1'):
+            print('right')
+            self.traverse_tree(node.right, val[1:])
+        else:
+            print(node.symbol)
+            # self.traverse_tree(node, next_val)
             # this is for debugging
             # you need to update this part of the code
             # or rearrange it so it suits your need
@@ -159,6 +164,10 @@ class HuffmanCodes(Codec):
                 output += word[0]
                 key = ''
         return output
+
+    # def decode(self, data):
+    #     output = ''
+
 
 if __name__ == '__main__':
     text = 'helllo'

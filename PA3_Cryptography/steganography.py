@@ -95,5 +95,6 @@ class Steganography():
             print("Binary message:", self.binary)
 
     def show(self, filename):
+        print(mpimg.imread(filename))
         plt.imshow(mpimg.imread(filename))
         plt.show()

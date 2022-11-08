@@ -27,7 +27,7 @@ def main_menu():
             s.print()
         elif op == 'S':
             s.show(filein)
-            
+
 def get_message():
     message = ''
     while True:
@@ -38,7 +38,7 @@ def get_message():
         except:
             print(f"The message contains not an ASCII character {char}!!!")
     return message
-    
+
 def get_codec():
     while True:
         choice = input("\nChoose a codec method or return to the main menu:\n\
@@ -46,15 +46,15 @@ Steganography only               - S\n\
 Steganography & Caesar Cypher    - C\n\
 Steganography & Huffman Codes    - H\n\
 Return to the main menu          - Q\n").upper()
-                   
+
         if choice == 'Q':
             break
         elif choice == 'S':
-            return 'binary' 
+            return 'binary'
         elif choice == 'C':
             return 'caesar'
         elif choice == 'H':
             return 'huffman'
-                                    
+
 if __name__ == '__main__':
-    main_menu()        
+    main_menu()
