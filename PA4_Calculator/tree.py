@@ -67,7 +67,6 @@ class ExpTree(BinaryTree):
                     tree.insertRight(tree.getRootVal())
                 tree.setRootVal(postfix[i])
                 tree.leftChild = s.pop()
-            print(tree)
 
 
     def preorder(tree):
@@ -77,7 +76,10 @@ class ExpTree(BinaryTree):
 
     def inorder(tree):
         s = ''
-        pass
+        if (tree.rightChild()):
+            print(tree.rightChild())
+        if (tree.leftChild()):
+            print(tree.leftChild())
         return s
 
     def postorder(tree):
@@ -123,6 +125,7 @@ if __name__ == '__main__':
 
     postfix = '5 2 3 * +'.split()
     tree = ExpTree.make_tree(postfix)
+    ExpTree.inorder(tree)
     assert str(tree) == '(5+(2*3))'
     assert ExpTree.inorder(tree) == '(5+(2*3))'
     assert ExpTree.postorder(tree) == '523*+'
