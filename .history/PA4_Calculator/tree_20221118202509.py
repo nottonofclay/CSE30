@@ -145,6 +145,7 @@ if __name__ == '__main__':
     # test an ExpTree
 
     postfix = '5 2 3 * +'.split()
+    print(f'here is the tree:', end='')
     tree = ExpTree.make_tree(postfix)
     assert str(tree) == '(5+(2*3))'
     assert ExpTree.inorder(tree) == '(5+(2*3))'

@@ -25,7 +25,6 @@ def infix_to_postfix(infix):
         else:
             if (op.peek() == None):
                 op.push(i)
-                continue
             if (i in '+-'):
                 if (op.peek() in '*/'):
                     postfix += op.pop()
@@ -37,10 +36,12 @@ def infix_to_postfix(infix):
         postfix += op.pop() + ' '
     return postfix
 
+
+
+
 def calculate(infix):
-    input = infix_to_postfix(infix)
-    tree = ExpTree.make_tree(input.split())
-    return ExpTree.evaluate(tree)
+    tree = ExpTree.make_tree(infix.split())
+    return ExpTree.evaluate()
 
 # a driver to test calculate module
 if __name__ == '__main__':
@@ -48,7 +49,6 @@ if __name__ == '__main__':
     # test infix_to_postfix function
     print('\nhere is the final postfix: ', end='')
     print(infix_to_postfix('5+2*3'))
-    print(calculate('5+2*3'))
     assert infix_to_postfix('(5+2)*3') == '5 2 + 3 *'
     assert infix_to_postfix('5+2*3') == '5 2 3 * +'
 

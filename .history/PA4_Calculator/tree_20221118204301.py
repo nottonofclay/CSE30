@@ -144,8 +144,8 @@ if __name__ == '__main__':
 
     # test an ExpTree
 
-    postfix = '5 2 3 * +'.split()
-    tree = ExpTree.make_tree(postfix)
+    postfix = '5 2 3 * +'
+    tree = ExpTree.make_tree(postfix.split())
     assert str(tree) == '(5+(2*3))'
     assert ExpTree.inorder(tree) == '(5+(2*3))'
     assert ExpTree.postorder(tree) == '523*+'

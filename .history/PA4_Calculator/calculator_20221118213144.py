@@ -9,9 +9,9 @@ def infix_to_postfix(infix):
     num = ''
     postfix = ''
     for i in infix:
-        # print(f'here is the stakc: {op.peek()}')
-        # print(f'here is the num: {num}')
-        # print(f'here is the postfix: {postfix}')
+        print(op)
+        print(num)
+        print(postfix)
         if (i.isdigit()) or (i == '.'):
             num += i
         elif (i == '('):
@@ -23,32 +23,22 @@ def infix_to_postfix(infix):
                     break
                 postfix += op.pop()
         else:
-            if (op.peek() == None):
-                op.push(i)
-                continue
             if (i in '+-'):
                 if (op.peek() in '*/'):
                     postfix += op.pop()
             op.push(i)
-    while (num != ''):
-        postfix += (str(num[0]) + ' ')
-        num = num[1:]
-    while (op.peek() != None):
-        postfix += op.pop() + ' '
-    return postfix
+
+
 
 def calculate(infix):
-    input = infix_to_postfix(infix)
-    tree = ExpTree.make_tree(input.split())
-    return ExpTree.evaluate(tree)
+    tree = ExpTree.make_tree(infix.split())
+    return ExpTree.evaluate()
 
 # a driver to test calculate module
 if __name__ == '__main__':
 
     # test infix_to_postfix function
-    print('\nhere is the final postfix: ', end='')
     print(infix_to_postfix('5+2*3'))
-    print(calculate('5+2*3'))
     assert infix_to_postfix('(5+2)*3') == '5 2 + 3 *'
     assert infix_to_postfix('5+2*3') == '5 2 3 * +'
 

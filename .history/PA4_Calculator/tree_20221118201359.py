@@ -63,6 +63,7 @@ class ExpTree(BinaryTree):
                 temp.rightChild = s.pop()
                 temp.leftChild = s.pop()
                 s.push(temp)
+        print(s.peek())                                                 # delete when done
         return s.peek()
 
     def preorder(tree):
@@ -94,22 +95,59 @@ class ExpTree(BinaryTree):
         return s
 
     def evaluate(tree):
+        output = 0.0
         if (tree.getLeftChild() == None) and (tree.getRightChild() == None):
-            return tree.getRootVal()
+            return 0.0
         left = ExpTree.evaluate(tree.getLeftChild())
         right = ExpTree.evaluate(tree.getRightChild())
-        if (str(tree.getRootVal()) in '+-*/'):
-            return ExpTree.calculate(left, right, tree.getRootVal())
+        if (str(tree.getRootVal()) == '+'):
+            return left + right
+        if (str(tree.getRootVal()) == '-'):
+            return left - right
+        if (str(tree.getRootVal()) == '*'):
+            return left * right
+        if (str(tree.getRootVal()) == '/'):
+            return left / right
+        return -1
+        # if (tree != None):
+            # if (str(tree.getRootVal()) in '+'):
+            #     try:
+            #         tree.setRootVal(float(str(tree.getLeftChild())) + float(str(tree.getRightChild())))
+            #     except:
+            #         if (str(tree.getLeftChild()).isdigit()):
+            #             output += float(str(tree.getLeftChild()))
+            #         else:
+            #             output += float(str(tree.getRightChild()))
+            # if (str(tree.getRootVal()) in '-'):
+            #     output += float(str(tree.getLeftChild())) - float(str(tree.getRightChild()))
+            # if (str(tree.getRootVal()) in '*'):
+            #     try:
+            #         output += float(str(tree.getLeftChild())) * float(str(tree.getRightChild()))
+            #     except:
+            #         output += output * float(str(tree.getRightChild()))
+            # if (str(tree.getRootVal()) in '/'):
+            #     output += float(str(tree.getLeftChild())) / float(str(tree.getRightChild()))
+            # if (str(tree.getRootVal()) in '+-*/'):
+            #     try:
+            #         print('tried')
+            #         output += ExpTree.calculate(tree.getLeftChild(), tree.getRightChild(), tree.getRootVal())
+            #     except:
+            #         print('excepted')
+            #         if (not str(tree.getRightChild()).isdigit()):
+            #             output += ExpTree.calculate(tree.getLeftChild(), output, tree.getRootVal())
+            #         elif (not str(tree.getLeftChild()).isdigit()):
+            #             output += ExpTree.calculate(output, tree.getRightChild(), tree.getRootVal())
+        return output
 
     def calculate(left, right, operator):
         if (str(operator) == '+'):
-            return float(left) + float(right)
+            return float(str(left)) + float(str(right))
         if (str(operator) == '-'):
-            return float(left) - float(right)
+            return float(str(left)) - float(str(right))
         if (str(operator) == '*'):
-            return float(left) * float(right)
+            return float(str(left)) * float(str(right))
         if (str(operator) == '/'):
-            return float(left) / float(right)
+            return float(str(left)) / float(str(right))
 
     def __str__(self):
         return ExpTree.inorder(self)
@@ -145,7 +183,13 @@ if __name__ == '__main__':
     # test an ExpTree
 
     postfix = '5 2 3 * +'.split()
+    print(f'here is the tree:', end='')
     tree = ExpTree.make_tree(postfix)
+    print(f'\nhere is the first tree:')
+    print(f'preorder: {ExpTree.preorder(tree)}')
+    print(f'inorder: {ExpTree.inorder(tree)}')
+    print(f'postorder: {ExpTree.postorder(tree)}')
+    print(f'evaluate: {ExpTree.evaluate(tree)}')
     assert str(tree) == '(5+(2*3))'
     assert ExpTree.inorder(tree) == '(5+(2*3))'
     assert ExpTree.postorder(tree) == '523*+'
@@ -154,6 +198,11 @@ if __name__ == '__main__':
 
     postfix = '5 2 + 3 *'.split()
     tree = ExpTree.make_tree(postfix)
+    print(f'\nhere is the second tree:')
+    print(f'preorder: {ExpTree.preorder(tree)}')
+    print(f'inorder: {ExpTree.inorder(tree)}')
+    print(f'postorder: {ExpTree.postorder(tree)}')
+    print(f'evaluate: {ExpTree.evaluate(tree)}')
     assert str(tree) == '((5+2)*3)'
     assert ExpTree.inorder(tree) == '((5+2)*3)'
     assert ExpTree.postorder(tree) == '52+3*'

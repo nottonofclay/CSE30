@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # test infix_to_postfix function
     print('\nhere is the final postfix: ', end='')
     print(infix_to_postfix('5+2*3'))
-    print(calculate('5+2*3'))
+    print(calculate('5+2*3+4'))
     assert infix_to_postfix('(5+2)*3') == '5 2 + 3 *'
     assert infix_to_postfix('5+2*3') == '5 2 3 * +'
 

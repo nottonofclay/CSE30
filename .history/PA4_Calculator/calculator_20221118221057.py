@@ -37,9 +37,11 @@ def infix_to_postfix(infix):
         postfix += op.pop() + ' '
     return postfix
 
+
+
+
 def calculate(infix):
-    input = infix_to_postfix(infix)
-    tree = ExpTree.make_tree(input.split())
+    tree = ExpTree.make_tree(infix.split())
     return ExpTree.evaluate(tree)
 
 # a driver to test calculate module
