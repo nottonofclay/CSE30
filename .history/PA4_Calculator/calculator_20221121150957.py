@@ -40,7 +40,7 @@ def infix_to_postfix(input):
             op.push(i)
         elif (i == ')'):
             try:
-                postfix += num[-1] + ' '
+                postfix += num[-2] + ' ' + num[-1] + ' '
             except:
                 if (len(num) > 0):
                     postfix += str(num[-1]) + ' '

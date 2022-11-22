@@ -5,7 +5,7 @@ from stack import Stack
 from tree import ExpTree
 
 def priority(first_op, second_op):
-    if (second_op == None):
+    if (second_op == ''):
         return True
     if (first_op in '^') and (second_op in '+-*/'):
         return True
@@ -40,7 +40,7 @@ def infix_to_postfix(input):
             op.push(i)
         elif (i == ')'):
             try:
-                postfix += num[-1] + ' '
+                postfix += num[-2] + ' ' + num[-1] + ' '
             except:
                 if (len(num) > 0):
                     postfix += str(num[-1]) + ' '
@@ -60,16 +60,13 @@ def infix_to_postfix(input):
                 except:
                     op.push(i)
             else:
-                try:
-                    postfix += num[-1] + ' '
-                    num = num[:-1]
-                    op.push(i)
-                except:
-                    op.push(i)
+                postfix += num[-1] + ' '
+                num = num[:-1]
+                op.push(i)
         while (len(num) > 0) and (op.peek() != None):
             postfix += str(num[0]) + ' '
             num = num[1:]
-            postfix += op.peek() + ' '
+            postfix += op.peek()
     return postfix
     #         if (i in '+-'):
     #             if (op.peek() == None):
@@ -115,7 +112,7 @@ def calculate(infix):
 if __name__ == '__main__':
 
     # print('\nhere is the final postfix: ', end='')
-    print(infix_to_postfix('3*(5+2)'))
+    print(infix_to_postfix('5+2*3'))
     # print(calculate('((3^2-4)*(5-2))-(2^3+1)'))
     # assert infix_to_postfix('(5+2)*3') == '5 2 + 3 *'
     # assert infix_to_postfix('5+2*3') == '5 2 3 * +'
