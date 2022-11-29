@@ -1,7 +1,6 @@
-# Clayton Lau
-# 21 November 2022
-# Creates a BinaryTree object (each parents has at least 2 children) & ExpressionTree
-# which is a pretty much a BinaryTree that orders based on priority of calculations (PEMDAS)
+#
+# DO NOT FORGET TO ADD COMMENTS
+#
 
 from stack import Stack
 
@@ -57,7 +56,7 @@ class ExpTree(BinaryTree):
     def make_tree(postfix):
         s = Stack()
         for i in range(len(postfix)):
-            if (postfix[i] not in '()^*/+-'):
+            if (postfix[i].isdigit()):
                 s.push(ExpTree(postfix[i]))
             else:
                 temp = ExpTree(postfix[i])
@@ -157,7 +156,6 @@ if __name__ == '__main__':
 
     postfix = '5 2 + 3 *'.split()
     tree = ExpTree.make_tree(postfix)
-    print(str(tree))
     assert str(tree) == '((5+2)*3)'
     assert ExpTree.inorder(tree) == '((5+2)*3)'
     assert ExpTree.postorder(tree) == '52+3*'

@@ -1,7 +1,6 @@
-# Clayton Lau
-# 21 November 2022
-# Converts infix to postfix and calculates the output using evalute from tree
-
+#
+# DO NOT FORGET TO ADD COMMENTS!!!
+#
 from stack import Stack
 from tree import ExpTree
 
@@ -32,6 +31,7 @@ def infix_to_postfix(input):
             input = input[1:]
     infix.append(temp)
     for i in infix:
+        print(f'here: ({postfix}), {i}, ({op.peek()})')
         if (i == ''):
             break
         elif (i[0].isnumeric()):
@@ -53,6 +53,38 @@ def infix_to_postfix(input):
     while (op.peek() != None):
         postfix += op.pop() + ' '
     return postfix
+    #         if (i in '+-'):
+    #             if (op.peek() == None):
+    #                 op.push(i)
+    #                 continue
+    #             if (op.peek() in '*/^'):
+    #                 try:
+    #                     postfix += num[-1] + ' ' + num[-2] + ' '
+    #                 except:
+    #                     if (len(num) > 0):
+    #                         postfix += str(num[-1]) + ' '
+    #                 num = num[:-2]
+    #                 postfix += op.pop() + ' '
+    #         if (i in '*/'):
+    #             if (op.peek() == None):
+    #                 op.push(i)
+    #                 continue
+    #             if (op.peek() in '^'):
+    #                 try:
+    #                     postfix += num[-1] + ' ' + num[-2] + ' '
+    #                 except:
+    #                     if (len(num) > 0):
+    #                         postfix += str(num[-1]) + ' '
+    #                 num = num[:-2]
+    #                 postfix += op.pop() + ' '
+    #         op.push(i)
+    # while (len(num) > 0) and (op.peek() != None):
+    #     postfix += (str(num[-1]) + ' ')
+    #     num = num[:-1]
+    #     postfix += op.pop() + ' '
+    # while (op.peek() != None):
+
+    #     postfix += op.pop() + ' '
 
 
 def calculate(infix):
@@ -66,6 +98,5 @@ if __name__ == '__main__':
     while(True):
         expression = input('Please enter your expression here. To quit enter \'quit\' or \'q\':\n')
         if (expression == 'quit') or (expression == 'q'):
-            print('Goodbye!')
             break
         print(calculate(expression))
