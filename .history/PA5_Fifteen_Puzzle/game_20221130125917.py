@@ -3,15 +3,12 @@
 from tkinter import *
 import tkinter.font as font
 #from fifteen import Fifteen
-
+          
 
 def clickButton():
     pass
-
-def addButton(gui, ):
-    return(Button(gui, text ))
-
-if __name__ == '__main__':
+    
+if __name__ == '__main__':    
 
     # make tiles
     #tiles = Fifteen()
@@ -31,7 +28,7 @@ if __name__ == '__main__':
                       bg='white', fg='black', font=font, height=2, width=5,
                       command = lambda : clickButton())
     button1.configure(bg='coral')
-
+    
     # the key argument name is used to identify the button
     gui.nametowidget(name1).configure(bg='white')
 
