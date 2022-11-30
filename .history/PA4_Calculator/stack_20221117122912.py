@@ -1,6 +1,6 @@
-# Clayton Lau
-# 21 November, 2022
-# Creates stack object
+#
+# DO NOT FORGET TO ADD COMMENTS
+#
 
 class Stack:
 

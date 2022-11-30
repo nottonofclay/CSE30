@@ -1,7 +1,6 @@
-# Clayton Lau
-# 21 November 2022
-# Converts infix to postfix and calculates the output using evalute from tree
-
+#
+# DO NOT FORGET TO ADD COMMENTS!!!
+#
 from stack import Stack
 from tree import ExpTree
 
