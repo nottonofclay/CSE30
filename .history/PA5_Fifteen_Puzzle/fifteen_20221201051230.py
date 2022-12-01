@@ -70,34 +70,32 @@ class Fifteen:
             current = self.tiles.get_vertex(i)
             previous = self.tiles.get_vertex(i-1)
             if (current.id in previous.get_connections()):
-                try:
-                    if (type(current.value) == str):
-                        output += ' ' + str(current.value) + ' '
-                        break
-                    elif (current.value < 10) and (previous.value < 10):
-                        output += ' ' + str(current.value) + ' '
-                    else:
-                        output += str(current.value) + ' '
-                except:
+                if (current.value == ' '):
                     output += ' ' + str(current.value) + ' '
+                elif (current.value < 10) and (previous.value < 10):
+                    output += ' ' + str(current.value) + ' '
+                else:
+                    output += str(current.value) + ' '
             else:
                 if (current.value == ' '):
-                    output += '\n' + current.value + ''
+                    output += '\\n' + current.value + ''
                 elif (current.value < 10):
-                    output += '\n ' + str(current.value) + ' '
+                    output += '\\n ' + str(current.value) + ' '
                 else:
-                    output += '\n' + str(current.value) + ' '
+                    output += '\\n' + str(current.value) + ' '
         if (self.tiles.get_vertex(len(self.tiles.get_verticies_values())).value == ' '):
             output += ' '
         elif (self.tiles.get_vertex(len(self.tiles.get_verticies_values())).value < 10):
             output += ' '
-        output += str(self.tiles.get_vertex(len(self.tiles.get_verticies_values())).value) + ' \n'
+        output += str(self.tiles.get_vertex(len(self.tiles.get_verticies_values())).value) + ' \\n'
         return output
 
 
 if __name__ == '__main__':
 
     game = Fifteen()
+
+    print(str(game))
     assert str(game) == ' 1  2  3  4 \n 5  6  7  8 \n 9 10 11 12 \n13 14 15    \n'
     assert game.is_valid_move(15) == True
     assert game.is_valid_move(12) == True

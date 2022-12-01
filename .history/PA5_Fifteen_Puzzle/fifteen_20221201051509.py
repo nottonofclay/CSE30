@@ -70,16 +70,12 @@ class Fifteen:
             current = self.tiles.get_vertex(i)
             previous = self.tiles.get_vertex(i-1)
             if (current.id in previous.get_connections()):
-                try:
-                    if (type(current.value) == str):
-                        output += ' ' + str(current.value) + ' '
-                        break
-                    elif (current.value < 10) and (previous.value < 10):
-                        output += ' ' + str(current.value) + ' '
-                    else:
-                        output += str(current.value) + ' '
-                except:
+                if (type(current.value) != int):
                     output += ' ' + str(current.value) + ' '
+                elif (current.value < 10) and (previous.value < 10):
+                    output += ' ' + str(current.value) + ' '
+                else:
+                    output += str(current.value) + ' '
             else:
                 if (current.value == ' '):
                     output += '\n' + current.value + ''

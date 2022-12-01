@@ -70,16 +70,13 @@ class Fifteen:
             current = self.tiles.get_vertex(i)
             previous = self.tiles.get_vertex(i-1)
             if (current.id in previous.get_connections()):
-                try:
-                    if (type(current.value) == str):
-                        output += ' ' + str(current.value) + ' '
-                        break
-                    elif (current.value < 10) and (previous.value < 10):
-                        output += ' ' + str(current.value) + ' '
-                    else:
-                        output += str(current.value) + ' '
-                except:
+                if (type(current.value) == str):
                     output += ' ' + str(current.value) + ' '
+                    break
+                elif (current.value < 10) and (previous.value < 10):
+                    output += ' ' + str(current.value) + ' '
+                else:
+                    output += str(current.value) + ' '
             else:
                 if (current.value == ' '):
                     output += '\n' + current.value + ''
@@ -109,6 +106,7 @@ if __name__ == '__main__':
     assert str(game) == ' 1  2  3  4 \n 5  6  7  8 \n 9 10 11 12 \n13 14 15    \n'
     assert game.is_solved() == True
     game.shuffle()
+    print(game.draw())
     assert str(game) != ' 1  2  3  4 \n 5  6  7  8 \n 9 10 11 12 \n13 14 15    \n'
     assert game.is_solved() == False
 
