@@ -5,19 +5,16 @@ import tkinter.font as font
 from fifteen import Fifteen
 
 
-def click_button(tiles, vertex):
-    print(vertex.get_connections())
-    # TODO:USE UPDATE
-    if tiles.is_valid_move(vertex.get_id()):
-        gui.nametowidget(str(vertex.get_id())).configure(text='hi')
-    # gui.nametowidget(name).configure(bg='blue')
+def click_button(name):
+    global buttonsClick
+    gui.nametowidget(name).configure(bg='blue')
 
-def add_button(gui, tiles, font, vertex):
+def add_button(gui, value, font, name):
     text = StringVar()
-    text.set(str(vertex.get_id()))
-    return Button(gui, text=vertex.get_value(), name = str(vertex.get_id()), bg='white',
+    text.set(str(value))
+    return Button(gui, text=str(value), name = name, bg='white',
                     fg='black', font=font, height=2, width=5,
-                    command = lambda : click_button(tiles, vertex))
+                    command = lambda : click_button(name))
 
 if __name__ == '__main__':
 
@@ -32,7 +29,7 @@ if __name__ == '__main__':
     font = font.Font(family='Comic Sans MS', size='25', weight='bold')
     buttons = []
     for i in tiles.tiles:
-        new_button = add_button(gui, tiles, font, i)
+        new_button = add_button(gui, i.value, font, str(i.id))
         buttons.append(new_button)
 
     k = 4
@@ -44,4 +41,10 @@ if __name__ == '__main__':
     #                     bg='white', fg='black', font=font, height=2,
     #                     width=10, command = lambda : click_button('shuffle') )
 
+    # the key argument name is used to identify the button
+    # gui.nametowidget(name1).configure(bg='white')
+
+    # add buttons to the window
+    # use .grid() or .pack() methods
+    # update the window
     gui.mainloop()

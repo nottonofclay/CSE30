@@ -7,9 +7,8 @@ from fifteen import Fifteen
 
 def click_button(tiles, vertex):
     print(vertex.get_connections())
-    # TODO:USE UPDATE
-    if tiles.is_valid_move(vertex.get_id()):
-        gui.nametowidget(str(vertex.get_id())).configure(text='hi')
+    print(tiles.is_valid_move(vertex))
+    gui.nametowidget(str(vertex.get_id())).configure(text='hi')
     # gui.nametowidget(name).configure(bg='blue')
 
 def add_button(gui, tiles, font, vertex):

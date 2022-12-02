@@ -1,5 +1,6 @@
 ''' DO NOT FORGET TO ADD COMMENTS '''
 
+import numpy as np
 from graph import Graph
 from random import choice
 
@@ -114,20 +115,18 @@ if __name__ == '__main__':
 
 
     game = Fifteen()
-    for i in game.tiles:
-        print(i.id, i.value)
-    # game.shuffle()
-    # game.draw()
-    # while True:
-    #     move = input('Enter your move or q to quit: ')
-    #     if move == 'q':
-    #         break
-    #     elif not move.isdigit():
-    #         continue
-    #     elif (int(move) not in game.tiles.get_verticies_values()):
-    #         continue
-    #     game.update(int(move))
-    #     game.draw()
-    #     if game.is_solved():
-    #         break
-    # print('Game over!')
+    game.shuffle()
+    game.draw()
+    while True:
+        move = input('Enter your move or q to quit: ')
+        if move == 'q':
+            break
+        elif not move.isdigit():
+            continue
+        elif (int(move) not in game.tiles.get_verticies_values()):
+            continue
+        game.update(int(move))
+        game.draw()
+        if game.is_solved():
+            break
+    print('Game over!')

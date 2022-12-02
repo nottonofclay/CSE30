@@ -114,8 +114,8 @@ if __name__ == '__main__':
 
 
     game = Fifteen()
-    for i in game.tiles:
-        print(i.id, i.value)
+    for i in game:
+        print(i)
     # game.shuffle()
     # game.draw()
     # while True:

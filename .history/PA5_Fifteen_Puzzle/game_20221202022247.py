@@ -6,16 +6,13 @@ from fifteen import Fifteen
 
 
 def click_button(tiles, vertex):
-    print(vertex.get_connections())
-    # TODO:USE UPDATE
-    if tiles.is_valid_move(vertex.get_id()):
-        gui.nametowidget(str(vertex.get_id())).configure(text='hi')
+    print('hi')
     # gui.nametowidget(name).configure(bg='blue')
 
 def add_button(gui, tiles, font, vertex):
     text = StringVar()
-    text.set(str(vertex.get_id()))
-    return Button(gui, text=vertex.get_value(), name = str(vertex.get_id()), bg='white',
+    text.set(str(vertex.value))
+    return Button(gui, text=str(text), name = vertex.id, bg='white',
                     fg='black', font=font, height=2, width=5,
                     command = lambda : click_button(tiles, vertex))
 
