@@ -33,7 +33,7 @@ class Fifteen:
         if (self.is_valid_move(i,j)):
             self.tiles.get_vertex(i).value, self.tiles.get_vertex(j).value = self.tiles.get_vertex(j).value, self.tiles.get_vertex(i).value
 
-    def shuffle(self, steps=30):
+    def shuffle(self, steps=5):
         start = 16
         for i in range(steps):
             move = choice(self.tiles.get_vertex(start).get_connections())

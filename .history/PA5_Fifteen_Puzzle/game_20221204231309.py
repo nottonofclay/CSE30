@@ -17,7 +17,7 @@ def click_button(gui, tiles, vertex):
     update_board(gui, tiles)
 
 def update_board(gui, tiles):
-    win_messages = ['yay.', 'you winned', 'god job', 'victroy', 'good shit']
+    win_messages = ['yay.', 'you winned', 'god job', 'victroy']
     for i in tiles.tiles.get_vertices():
         gui.nametowidget(str(i)).configure(text=str(tiles.tiles.get_verticies_values()[i-1]))
     if (tiles.is_solved()):
