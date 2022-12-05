@@ -10,8 +10,7 @@ from time import sleep
 def click_button(gui, tiles, vertex):
     if (vertex.get_value() == ' '):
         return ' '
-    if (tiles.is_solved()):
-        return ' '
+    print(vertex.get_value())
     tiles.update(int(vertex.get_value()))
     tiles.draw()
     update_board(gui, tiles)

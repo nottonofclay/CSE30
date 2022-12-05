@@ -10,30 +10,25 @@ from time import sleep
 def click_button(gui, tiles, vertex):
     if (vertex.get_value() == ' '):
         return ' '
-    if (tiles.is_solved()):
-        return ' '
+    print(vertex.get_value())
     tiles.update(int(vertex.get_value()))
     tiles.draw()
     update_board(gui, tiles)
 
 def update_board(gui, tiles):
-    win_messages = ['yay.', 'you winned', 'god job', 'victroy']
     for i in tiles.tiles.get_vertices():
         gui.nametowidget(str(i)).configure(text=str(tiles.tiles.get_verticies_values()[i-1]))
     if (tiles.is_solved()):
         print('You Win!')
-        for i in tiles.tiles.get_vertices():
-            gui.nametowidget(str(i)).configure(text=choice(win_messages))
 
 def add_button(gui, tiles, font, vertex):
     text = StringVar()
     text.set(str(vertex.get_id()))
     return Button(gui, text=vertex.get_value(), name = str(vertex.get_id()), bg='white',
-                    fg='black', font=font, height=2, width=8,
+                    fg='black', font=font, height=2, width=5,
                     command = lambda : click_button(gui, tiles, vertex))
 
 def shuffle(gui, tiles, count=0, steps=30):
-    update_board(gui, tiles)
     for i in tiles.tiles:
         if (i.get_value() == ' '):
             start = i.get_id()

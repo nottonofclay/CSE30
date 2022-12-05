@@ -22,6 +22,7 @@ class Fifteen:
 
     def update(self, move):
         for i in self.tiles:
+            print(i, type(i))
             if (i.value == ' '):
                 empty_tile = i.id
             if (i.value == move):
@@ -33,7 +34,7 @@ class Fifteen:
         if (self.is_valid_move(i,j)):
             self.tiles.get_vertex(i).value, self.tiles.get_vertex(j).value = self.tiles.get_vertex(j).value, self.tiles.get_vertex(i).value
 
-    def shuffle(self, steps=5):
+    def shuffle(self, steps=30):
         start = 16
         for i in range(steps):
             move = choice(self.tiles.get_vertex(start).get_connections())

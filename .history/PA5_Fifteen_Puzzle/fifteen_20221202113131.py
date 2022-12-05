@@ -28,12 +28,14 @@ class Fifteen:
                 move_tile = i.id
         if (self.is_valid_move(move_tile, other=empty_tile)):
             self.transpose(move_tile, empty_tile)
+            return True
+        return False
 
     def transpose(self, i, j):
         if (self.is_valid_move(i,j)):
             self.tiles.get_vertex(i).value, self.tiles.get_vertex(j).value = self.tiles.get_vertex(j).value, self.tiles.get_vertex(i).value
 
-    def shuffle(self, steps=5):
+    def shuffle(self, steps=30):
         start = 16
         for i in range(steps):
             move = choice(self.tiles.get_vertex(start).get_connections())
